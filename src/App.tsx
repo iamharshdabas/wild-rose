@@ -7,7 +7,6 @@ import {
   AuthPage,
   ErrorComponent,
   RefineSnackbarProvider,
-  ThemedLayoutV2,
   useNotificationProvider,
 } from '@refinedev/mui'
 import routerBindings, {
@@ -28,6 +27,10 @@ import {
 import { GuestCreate, GuestEdit, GuestList, GuestShow } from './pages/guest'
 import { RoomCreate, RoomEdit, RoomList, RoomShow } from './pages/room'
 import { supabaseClient } from './utility'
+import { ThemedLayoutV2 } from './components/layout'
+import { ThemedHeaderV2 } from './components/layout/header'
+import { ThemedSiderV2 } from './components/layout/sider'
+import { ThemedTitleV2 } from './components/layout/title'
 
 function App() {
   return (
@@ -84,7 +87,11 @@ function App() {
                         key="authenticated-inner"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayoutV2>
+                        <ThemedLayoutV2
+                          Header={ThemedHeaderV2}
+                          Sider={ThemedSiderV2}
+                          Title={ThemedTitleV2}
+                        >
                           <Outlet />
                         </ThemedLayoutV2>
                       </Authenticated>
