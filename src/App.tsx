@@ -1,46 +1,39 @@
-import {
-  Refine,
-  GitHubBanner,
-  WelcomePage,
-  Authenticated,
-} from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
+import CssBaseline from '@mui/material/CssBaseline'
+import GlobalStyles from '@mui/material/GlobalStyles'
+import { Authenticated, GitHubBanner, Refine } from '@refinedev/core'
+import { DevtoolsPanel, DevtoolsProvider } from '@refinedev/devtools'
+import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 import {
   AuthPage,
   ErrorComponent,
   notificationProvider,
   RefineSnackbarProvider,
   ThemedLayoutV2,
-} from "@refinedev/mui";
-
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+} from '@refinedev/mui'
 import routerBindings, {
-  NavigateToResource,
   CatchAllNavigate,
-  UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+  NavigateToResource,
+  UnsavedChangesNotifier,
+} from '@refinedev/react-router-v6'
+import { dataProvider, liveProvider } from '@refinedev/supabase'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import authProvider from './authProvider'
+import { Header } from './components/header'
+import { ColorModeContextProvider } from './contexts/color-mode'
 import {
-  BlogPostList,
   BlogPostCreate,
   BlogPostEdit,
+  BlogPostList,
   BlogPostShow,
-} from "./pages/blog-posts";
+} from './pages/blog-posts'
 import {
-  CategoryList,
   CategoryCreate,
   CategoryEdit,
+  CategoryList,
   CategoryShow,
-} from "./pages/categories";
-import { supabaseClient } from "./utility";
-import { ColorModeContextProvider } from "./contexts/color-mode";
-import { Header } from "./components/header";
-import authProvider from "./authProvider";
+} from './pages/categories'
+import { supabaseClient } from './utility'
 
 function App() {
   return (
@@ -49,7 +42,7 @@ function App() {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
-          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
@@ -60,21 +53,21 @@ function App() {
                 notificationProvider={notificationProvider}
                 resources={[
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
+                    name: 'blog_posts',
+                    list: '/blog-posts',
+                    create: '/blog-posts/create',
+                    edit: '/blog-posts/edit/:id',
+                    show: '/blog-posts/show/:id',
                     meta: {
                       canDelete: true,
                     },
                   },
                   {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
+                    name: 'categories',
+                    list: '/categories',
+                    create: '/categories/create',
+                    edit: '/categories/edit/:id',
+                    show: '/categories/show/:id',
                     meta: {
                       canDelete: true,
                     },
@@ -84,7 +77,7 @@ function App() {
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                   useNewQueryKeys: true,
-                  projectId: "VeqEWg-Qbn8FE-8O4HEM",
+                  projectId: 'VeqEWg-Qbn8FE-8O4HEM',
                 }}
               >
                 <Routes>
@@ -135,8 +128,8 @@ function App() {
                           type="login"
                           formProps={{
                             defaultValues: {
-                              email: "info@refine.dev",
-                              password: "refine-supabase",
+                              email: 'info@refine.dev',
+                              password: 'refine-supabase',
                             },
                           }}
                         />
@@ -163,7 +156,7 @@ function App() {
         </ColorModeContextProvider>
       </RefineKbarProvider>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

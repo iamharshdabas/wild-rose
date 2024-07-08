@@ -1,5 +1,5 @@
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { useMany } from "@refinedev/core";
+import { DataGrid, type GridColDef } from '@mui/x-data-grid'
+import { useMany } from '@refinedev/core'
 import {
   DateField,
   DeleteButton,
@@ -8,19 +8,19 @@ import {
   MarkdownField,
   ShowButton,
   useDataGrid,
-} from "@refinedev/mui";
-import React from "react";
+} from '@refinedev/mui'
+import React from 'react'
 
 export const BlogPostList = () => {
   const { dataGridProps } = useDataGrid({
     syncWithLocation: true,
     meta: {
-      select: "*, categories(id,title)",
+      select: '*, categories(id,title)',
     },
-  });
+  })
 
   const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-    resource: "categories",
+    resource: 'categories',
     ids:
       dataGridProps?.rows
         ?.map((item: any) => item?.categories?.id)
@@ -28,67 +28,67 @@ export const BlogPostList = () => {
     queryOptions: {
       enabled: !!dataGridProps?.rows,
     },
-  });
+  })
 
   const columns = React.useMemo<GridColDef[]>(
     () => [
       {
-        field: "id",
-        headerName: "ID",
-        type: "number",
+        field: 'id',
+        headerName: 'ID',
+        type: 'number',
         minWidth: 50,
       },
       {
-        field: "title",
+        field: 'title',
         flex: 1,
-        headerName: "Title",
+        headerName: 'Title',
         minWidth: 200,
       },
       {
-        field: "content",
+        field: 'content',
         flex: 1,
-        headerName: "content",
+        headerName: 'content',
         minWidth: 250,
         renderCell: function render({ value }) {
-          if (!value) return "-";
-          return <MarkdownField value={value?.slice(0, 80) + "..." || ""} />;
+          if (!value) return '-'
+          return <MarkdownField value={value?.slice(0, 80) + '...' || ''} />
         },
       },
       {
-        field: "categories",
+        field: 'categories',
         flex: 1,
-        headerName: "Category",
+        headerName: 'Category',
         minWidth: 300,
         valueGetter: ({ row }) => {
-          const value = row?.categories;
-          return value;
+          const value = row?.categories
+          return value
         },
         renderCell: function render({ value }) {
           return categoryIsLoading ? (
             <>Loading...</>
           ) : (
             categoryData?.data?.find((item) => item.id === value?.id)?.title
-          );
+          )
         },
       },
       {
-        field: "status",
+        field: 'status',
         flex: 1,
-        headerName: "Status",
+        headerName: 'Status',
         minWidth: 200,
       },
       {
-        field: "createdAt",
+        field: 'createdAt',
         flex: 1,
-        headerName: "Created at",
+        headerName: 'Created at',
         minWidth: 250,
         renderCell: function render({ value }) {
-          return <DateField value={value} />;
+          return <DateField value={value} />
         },
       },
       {
-        field: "actions",
-        headerName: "Actions",
+        field: 'actions',
+        headerName: 'Actions',
         sortable: false,
         renderCell: function render({ row }) {
           return (
@@ -97,19 +97,19 @@ export const BlogPostList = () => {
               <ShowButton hideText recordItemId={row.id} />
               <DeleteButton hideText recordItemId={row.id} />
             </>
-          );
+          )
         },
-        align: "center",
-        headerAlign: "center",
+        align: 'center',
+        headerAlign: 'center',
         minWidth: 80,
       },
     ],
     [categoryData]
-  );
+  )
 
   return (
     <List>
       <DataGrid {...dataGridProps} columns={columns} autoHeight />
     </List>
-  );
-};
+  )
+}
