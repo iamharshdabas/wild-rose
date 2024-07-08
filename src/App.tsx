@@ -20,18 +20,13 @@ import { dataProvider } from '@refinedev/supabase'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import { ColorModeContextProvider } from './contexts/color-mode'
 import {
-  BookingsCreate,
-  BookingsEdit,
-  BookingsList,
-  BookingsShow,
-} from './pages/bookings'
-import {
-  GuestsCreate,
-  GuestsEdit,
-  GuestsList,
-  GuestsShow,
-} from './pages/guests'
-import { RoomsCreate, RoomsEdit, RoomsList, RoomsShow } from './pages/rooms'
+  BookingCreate,
+  BookingEdit,
+  BookingList,
+  BookingShow,
+} from './pages/booking'
+import { GuestCreate, GuestEdit, GuestList, GuestShow } from './pages/guest'
+import { RoomCreate, RoomEdit, RoomList, RoomShow } from './pages/room'
 import { supabaseClient } from './utility'
 
 function App() {
@@ -100,22 +95,22 @@ function App() {
                       element={<NavigateToResource resource="rooms" />}
                     />
                     <Route path="/bookings">
-                      <Route index element={<BookingsList />} />
-                      <Route path="create" element={<BookingsCreate />} />
-                      <Route path="edit/:id" element={<BookingsEdit />} />
-                      <Route path="show/:id" element={<BookingsShow />} />
+                      <Route index element={<BookingList />} />
+                      <Route path="create" element={<BookingCreate />} />
+                      <Route path="edit/:id" element={<BookingEdit />} />
+                      <Route path="show/:id" element={<BookingShow />} />
                     </Route>
                     <Route path="/guests">
-                      <Route index element={<GuestsList />} />
-                      <Route path="create" element={<GuestsCreate />} />
-                      <Route path="edit/:id" element={<GuestsEdit />} />
-                      <Route path="show/:id" element={<GuestsShow />} />
+                      <Route index element={<GuestList />} />
+                      <Route path="create" element={<GuestCreate />} />
+                      <Route path="edit/:id" element={<GuestEdit />} />
+                      <Route path="show/:id" element={<GuestShow />} />
                     </Route>
                     <Route path="/rooms">
-                      <Route index element={<RoomsList />} />
-                      <Route path="create" element={<RoomsCreate />} />
-                      <Route path="edit/:id" element={<RoomsEdit />} />
-                      <Route path="show/:id" element={<RoomsShow />} />
+                      <Route index element={<RoomList />} />
+                      <Route path="create" element={<RoomCreate />} />
+                      <Route path="edit/:id" element={<RoomEdit />} />
+                      <Route path="show/:id" element={<RoomShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
