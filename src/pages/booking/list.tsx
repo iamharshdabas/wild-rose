@@ -42,7 +42,7 @@ export const BookingList = () => {
         field: 'created_at',
         flex: 1,
         headerName: 'Created At',
-        minWidth: 250,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return <DateField value={value} />
         },
@@ -51,7 +51,7 @@ export const BookingList = () => {
         field: 'startDate',
         flex: 1,
         headerName: 'Start Date',
-        minWidth: 250,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return <DateField value={value} />
         },
@@ -60,31 +60,28 @@ export const BookingList = () => {
         field: 'endDate',
         flex: 1,
         headerName: 'End Date',
-        minWidth: 250,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return <DateField value={value} />
         },
       },
       {
         field: 'totalNights',
-        flex: 1,
         headerName: 'Total Nights',
         type: 'number',
-        minWidth: 200,
+        minWidth: 100,
       },
       {
         field: 'totalGuests',
-        flex: 1,
         headerName: 'Total Guests',
         type: 'number',
-        minWidth: 200,
+        minWidth: 100,
       },
       {
         field: 'price',
-        flex: 1,
         headerName: 'Price',
         type: 'number',
-        minWidth: 200,
+        minWidth: 100,
       },
       {
         field: 'paid',
@@ -98,13 +95,12 @@ export const BookingList = () => {
         field: 'status',
         flex: 1,
         headerName: 'Status',
-        minWidth: 200,
+        minWidth: 150,
       },
       {
         field: 'roomID',
-        flex: 1,
         headerName: 'Room',
-        minWidth: 300,
+        minWidth: 100,
         renderCell: function render({ value }) {
           return roomIsLoading ? (
             <>Loading...</>
@@ -115,9 +111,9 @@ export const BookingList = () => {
       },
       {
         field: 'guestID',
-        flex: 1,
+        flex: 1.5,
         headerName: 'Guest',
-        minWidth: 300,
+        minWidth: 200,
         renderCell: function render({ value }) {
           return guestIsLoading ? (
             <>Loading...</>
@@ -128,6 +124,7 @@ export const BookingList = () => {
       },
       {
         field: 'actions',
+        flex: 1,
         headerName: 'Actions',
         sortable: false,
         renderCell: function render({ row }) {
@@ -141,10 +138,10 @@ export const BookingList = () => {
         },
         align: 'center',
         headerAlign: 'center',
-        minWidth: 80,
+        minWidth: 150,
       },
     ],
-    [roomData?.data, guestData?.data]
+    [roomIsLoading, roomData?.data, guestIsLoading, guestData?.data]
   )
 
   return (

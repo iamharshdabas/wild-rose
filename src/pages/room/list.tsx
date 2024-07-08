@@ -24,7 +24,7 @@ export const RoomList = () => {
         field: 'created_at',
         flex: 1,
         headerName: 'Created At',
-        minWidth: 250,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return <DateField value={value} />
         },
@@ -47,7 +47,7 @@ export const RoomList = () => {
         field: 'bedroom',
         flex: 1,
         headerName: 'Bedroom',
-        minWidth: 100,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return (
             <img src={value} style={{ height: '50px', maxWidth: '100px' }} />
@@ -58,7 +58,7 @@ export const RoomList = () => {
         field: 'bathroom',
         flex: 1,
         headerName: 'Bathroom',
-        minWidth: 100,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return (
             <img src={value} style={{ height: '50px', maxWidth: '100px' }} />
@@ -67,6 +67,7 @@ export const RoomList = () => {
       },
       {
         field: 'actions',
+        flex: 1,
         headerName: 'Actions',
         sortable: false,
         renderCell: function render({ row }) {
@@ -80,7 +81,7 @@ export const RoomList = () => {
         },
         align: 'center',
         headerAlign: 'center',
-        minWidth: 80,
+        minWidth: 150,
       },
     ],
     []

@@ -25,14 +25,14 @@ export const GuestList = () => {
         field: 'created_at',
         flex: 1,
         headerName: 'Created At',
-        minWidth: 250,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return <DateField value={value} />
         },
       },
       {
         field: 'name',
-        flex: 1,
+        flex: 1.5,
         headerName: 'Name',
         minWidth: 200,
       },
@@ -49,7 +49,7 @@ export const GuestList = () => {
         field: 'dob',
         flex: 1,
         headerName: 'Dob',
-        minWidth: 250,
+        minWidth: 150,
         renderCell: function render({ value }) {
           return <DateField value={value} />
         },
@@ -59,22 +59,22 @@ export const GuestList = () => {
         flex: 1,
         headerName: 'Phone Number',
         type: 'number',
-        minWidth: 200,
+        minWidth: 150,
       },
       {
         field: 'address',
-        flex: 1,
+        flex: 2,
         headerName: 'Address',
-        minWidth: 200,
+        minWidth: 250,
       },
       {
         field: 'gender',
-        flex: 1,
         headerName: 'Gender',
-        minWidth: 200,
+        minWidth: 100,
       },
       {
         field: 'actions',
+        flex: 1,
         headerName: 'Actions',
         sortable: false,
         renderCell: function render({ row }) {
@@ -88,7 +88,7 @@ export const GuestList = () => {
         },
         align: 'center',
         headerAlign: 'center',
-        minWidth: 80,
+        minWidth: 150,
       },
     ],
     []

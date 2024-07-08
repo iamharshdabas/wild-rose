@@ -99,7 +99,7 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="rooms" />}
+                      element={<NavigateToResource resource="bookings" />} // TODO: set resource to dashboard
                     />
                     <Route path="/bookings">
                       <Route index element={<BookingList />} />
