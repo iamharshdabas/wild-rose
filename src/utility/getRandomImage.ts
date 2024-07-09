@@ -29,7 +29,7 @@ const bathroom = [
   'https://yxoqmnwlixhxdxtgjthx.supabase.co/storage/v1/object/public/rooms-bathroom/oZ7WWuHj1-5PremxKHAPo.jpg',
 ]
 
-const getRandomImage = (of: string) => {
+export const getRandomImage = (of: string) => {
   switch (of) {
     case 'bedroom':
       return bedroom[Math.floor(Math.random() * bedroom.length)]
@@ -38,5 +38,3 @@ const getRandomImage = (of: string) => {
       return bathroom[Math.floor(Math.random() * bathroom.length)]
   }
 }
-
-export default getRandomImage

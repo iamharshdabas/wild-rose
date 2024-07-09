@@ -2,7 +2,7 @@ import { Box, Stack, TextField } from '@mui/material'
 import { Create } from '@refinedev/mui'
 import { useForm } from '@refinedev/react-hook-form'
 import ImageField from '../../components/field/image'
-import getRandomImage from '../../utility/getRandomImage'
+import { getRandomImage } from '../../utility'
 
 export const RoomCreate = () => {
   const {

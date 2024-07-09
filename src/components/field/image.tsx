@@ -1,6 +1,6 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { Controller } from 'react-hook-form'
-import getRandomImage from '../../utility/getRandomImage'
+import { getRandomImage } from '../../utility'
 
 const ImageField = ({
   control,
