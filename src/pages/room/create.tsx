@@ -1,6 +1,8 @@
-import { Box, TextField } from '@mui/material'
+import { Box, Stack, TextField } from '@mui/material'
 import { Create } from '@refinedev/mui'
 import { useForm } from '@refinedev/react-hook-form'
+import ImageField from '../../components/field/image'
+import getRandomImage from '../../utility/getRandomImage'
 
 export const RoomCreate = () => {
   const {
@@ -18,24 +20,6 @@ export const RoomCreate = () => {
         sx={{ display: 'flex', flexDirection: 'column' }}
         autoComplete="off"
       >
-        {/*
-                    DatePicker component is not included in "@refinedev/mui" package.
-                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
-
-                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
-                */}
-        <TextField
-          {...register('created_at', {
-            required: 'This field is required',
-          })}
-          error={!!(errors as any)?.created_at}
-          helperText={(errors as any)?.created_at?.message}
-          margin="normal"
-          fullWidth
-          InputLabelProps={{ shrink: true }}
-          label="Created At"
-          name="created_at"
-        />
         <TextField
           {...register('name', {
             required: 'This field is required',
@@ -64,6 +48,20 @@ export const RoomCreate = () => {
           label="Price"
           name="price"
         />
+        <Stack direction="row" gap={4}>
+          <ImageField
+            control={control}
+            src={getRandomImage('bedroom')}
+            name="bedroom"
+            changeable
+          />
+          <ImageField
+            control={control}
+            src={getRandomImage('bathroom')}
+            name="bathroom"
+            changeable
+          />
+        </Stack>
       </Box>
     </Create>
   )

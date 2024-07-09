@@ -1,6 +1,8 @@
-import { Box, TextField } from '@mui/material'
+import { Box, Stack, TextField } from '@mui/material'
 import { Edit } from '@refinedev/mui'
 import { useForm } from '@refinedev/react-hook-form'
+import ImageField from '../../components/field/image'
+import { Tables } from '../../types/supabase'
 
 export const RoomEdit = () => {
   const {
@@ -9,7 +11,7 @@ export const RoomEdit = () => {
     register,
     control,
     formState: { errors },
-  } = useForm()
+  } = useForm<Tables<'rooms'>>()
 
   const roomsData = queryResult?.data?.data
 
@@ -52,6 +54,7 @@ export const RoomEdit = () => {
           InputLabelProps={{ shrink: true }}
           label="Created At"
           name="created_at"
+          disabled
         />
         <TextField
           {...register('name', {
@@ -81,6 +84,20 @@ export const RoomEdit = () => {
           label="Price"
           name="price"
         />
+        <Stack width="100%" direction="row" gap={4}>
+          <ImageField
+            control={control}
+            name="bedroom"
+            src={roomsData?.bedroom ?? ''}
+            changeable
+          />
+          <ImageField
+            control={control}
+            name="bathroom"
+            src={roomsData?.bathroom ?? ''}
+            changeable
+          />
+        </Stack>
       </Box>
     </Edit>
   )

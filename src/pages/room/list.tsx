@@ -10,7 +10,9 @@ import {
 import React from 'react'
 
 export const RoomList = () => {
-  const { dataGridProps } = useDataGrid()
+  const { dataGridProps } = useDataGrid({
+    sorters: { initial: [{ field: 'name', order: 'desc' }] },
+  })
 
   const columns = React.useMemo<GridColDef[]>(
     () => [

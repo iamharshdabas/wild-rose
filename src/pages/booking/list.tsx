@@ -1,6 +1,6 @@
 import { Checkbox } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { useMany } from '@refinedev/core'
+import { CrudFilter, useMany } from '@refinedev/core'
 import {
   DateField,
   DeleteButton,
@@ -11,8 +11,15 @@ import {
 } from '@refinedev/mui'
 import React from 'react'
 
-export const BookingList = () => {
-  const { dataGridProps } = useDataGrid()
+type Props = {
+  filters?: CrudFilter[]
+}
+
+export const BookingList = ({ filters }: Props) => {
+  const { dataGridProps } = useDataGrid({
+    resource: 'bookings',
+    filters: { initial: filters },
+  })
 
   const { data: roomData, isLoading: roomIsLoading } = useMany({
     resource: 'rooms',
@@ -145,7 +152,7 @@ export const BookingList = () => {
   )
 
   return (
-    <List>
+    <List title="Bookings" breadcrumb={!filters} canCreate={!filters}>
       <DataGrid {...dataGridProps} columns={columns} autoHeight />
     </List>
   )
