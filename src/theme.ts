@@ -16,7 +16,7 @@ const themeOptions: ThemeOptions = {
       contrastText: '#fafafa',
     },
     background: {
-      default: '#000000',
+      default: '#111111',
       paper: '#18181b',
     },
     divider: '#27272a',
