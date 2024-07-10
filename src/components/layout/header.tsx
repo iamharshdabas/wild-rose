@@ -44,7 +44,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 {user?.name}
               </Typography>
             )}
-            {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
+            <Avatar src={user?.avatar} alt={user?.name} />
           </Stack>
         </Stack>
       </Toolbar>

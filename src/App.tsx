@@ -20,6 +20,7 @@ import routerBindings, {
 } from '@refinedev/react-router-v6'
 import { dataProvider } from '@refinedev/supabase'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import authProvider from './authProvider'
 import { ThemedLayoutV2 } from './components/layout'
 import { ThemedHeaderV2 } from './components/layout/header'
 import { ThemedSiderV2 } from './components/layout/sider'
@@ -48,7 +49,7 @@ function App() {
                 <Refine
                   dataProvider={dataProvider(supabaseClient)}
                   // liveProvider={liveProvider(supabaseClient)}
-                  // authProvider={authProvider}
+                  authProvider={authProvider}
                   routerProvider={routerBindings}
                   notificationProvider={useNotificationProvider}
                   resources={[
@@ -142,8 +143,8 @@ function App() {
                             type="login"
                             formProps={{
                               defaultValues: {
-                                email: 'info@refine.dev',
-                                password: 'refine-supabase',
+                                email: 'xoxo@blackrose.com',
+                                password: 'xoxo',
                               },
                             }}
                           />
