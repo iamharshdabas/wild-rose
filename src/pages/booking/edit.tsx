@@ -30,6 +30,8 @@ export const BookingEdit = () => {
     defaultValue: bookingsData?.guestID,
   })
 
+  const options = ['unpaid', 'checked-in', 'checked-out', 'checked-out-due']
+
   return (
     <Edit saveButtonProps={saveButtonProps}>
       <Box
@@ -52,12 +54,6 @@ export const BookingEdit = () => {
           name="id"
           disabled
         />
-        {/*
-                    DatePicker component is not included in "@refinedev/mui" package.
-                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
-
-                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
-                */}
         <TextField
           {...register('created_at', {
             required: 'This field is required',
@@ -69,15 +65,10 @@ export const BookingEdit = () => {
           InputLabelProps={{ shrink: true }}
           label="Created At"
           name="created_at"
+          disabled
         />
-
-        {/*
-                    DatePicker component is not included in "@refinedev/mui" package.
-                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
-
-                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
-                */}
         <TextField
+          type="datetime-local"
           {...register('startDate', {
             required: 'This field is required',
           })}
@@ -89,14 +80,8 @@ export const BookingEdit = () => {
           label="Start Date"
           name="startDate"
         />
-
-        {/*
-                    DatePicker component is not included in "@refinedev/mui" package.
-                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
-
-                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
-                */}
         <TextField
+          type="datetime-local"
           {...register('endDate', {
             required: 'This field is required',
           })}
@@ -108,6 +93,7 @@ export const BookingEdit = () => {
           label="End Date"
           name="endDate"
         />
+        {/* TODO: */}
         <TextField
           {...register('totalNights', {
             required: 'This field is required',
@@ -153,7 +139,6 @@ export const BookingEdit = () => {
         <Controller
           control={control}
           name="paid"
-          // eslint-disable-next-line
           defaultValue={null as any}
           render={({ field }) => (
             <FormControlLabel
@@ -170,24 +155,34 @@ export const BookingEdit = () => {
             />
           )}
         />
-        <TextField
-          {...register('status', {
-            required: 'This field is required',
-          })}
-          error={!!(errors as any)?.status}
-          helperText={(errors as any)?.status?.message}
-          margin="normal"
-          fullWidth
-          InputLabelProps={{ shrink: true }}
-          type="text"
-          label="Status"
+        <Controller
+          control={control}
           name="status"
+          rules={{ required: 'This field is required' }}
+          render={({ field }) => (
+            <Autocomplete
+              options={options}
+              getOptionLabel={(option) => option}
+              isOptionEqualToValue={(option, value) => option === value}
+              onChange={(_, value) => field.onChange(value)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Status"
+                  margin="normal"
+                  variant="outlined"
+                  error={!!errors.status}
+                  helperText={(errors as any)?.status?.message}
+                  required
+                />
+              )}
+            />
+          )}
         />
         <Controller
           control={control}
           name="roomID"
           rules={{ required: 'This field is required' }}
-          // eslint-disable-next-line
           defaultValue={null as any}
           render={({ field }) => (
             <Autocomplete
@@ -225,7 +220,6 @@ export const BookingEdit = () => {
           control={control}
           name="guestID"
           rules={{ required: 'This field is required' }}
-          // eslint-disable-next-line
           defaultValue={null as any}
           render={({ field }) => (
             <Autocomplete
