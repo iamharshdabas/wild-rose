@@ -1,6 +1,15 @@
-import { Box, TextField } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from '@mui/material'
 import { Create } from '@refinedev/mui'
 import { useForm } from '@refinedev/react-hook-form'
+import { Controller } from 'react-hook-form'
 
 export const GuestCreate = () => {
   const {
@@ -18,24 +27,6 @@ export const GuestCreate = () => {
         sx={{ display: 'flex', flexDirection: 'column' }}
         autoComplete="off"
       >
-        {/*
-                    DatePicker component is not included in "@refinedev/mui" package.
-                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
-
-                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
-                */}
-        <TextField
-          {...register('created_at', {
-            required: 'This field is required',
-          })}
-          error={!!(errors as any)?.created_at}
-          helperText={(errors as any)?.created_at?.message}
-          margin="normal"
-          fullWidth
-          InputLabelProps={{ shrink: true }}
-          label="Created At"
-          name="created_at"
-        />
         <TextField
           {...register('name', {
             required: 'This field is required',
@@ -62,13 +53,8 @@ export const GuestCreate = () => {
           label="Email"
           name="email"
         />
-        {/*
-                    DatePicker component is not included in "@refinedev/mui" package.
-                    To use a <DatePicker> component, you can follow the official documentation for Material UI.
-
-                    Docs: https://mui.com/x/react-date-pickers/date-picker/#basic-usage
-                */}
         <TextField
+          type="date"
           {...register('dob', {
             required: 'This field is required',
           })}
@@ -107,18 +93,27 @@ export const GuestCreate = () => {
           label="Address"
           name="address"
         />
-        <TextField
-          {...register('gender', {
-            required: 'This field is required',
-          })}
-          error={!!(errors as any)?.gender}
-          helperText={(errors as any)?.gender?.message}
-          margin="normal"
-          fullWidth
-          InputLabelProps={{ shrink: true }}
-          type="text"
-          label="Gender"
+        <Controller
           name="gender"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup {...field}>
+                <FormControlLabel
+                  value="male"
+                  control={<Radio />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="Female"
+                />
+              </RadioGroup>
+            </FormControl>
+          )}
         />
       </Box>
     </Create>
