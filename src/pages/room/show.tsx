@@ -31,11 +31,12 @@ export const RoomShow = () => {
                 {room?.price}
               </Typography>
             </Stack>
-            <Stack>
+            <Stack alignItems="end">
               <Typography fontFamily="monospace" variant="h5">
                 ID: {room?.id}
               </Typography>
               <DateField
+                format="LLL"
                 fontFamily="monospace"
                 variant="h5"
                 value={room?.created_at}
