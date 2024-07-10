@@ -1,5 +1,8 @@
+import { ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import GlobalStyles from '@mui/material/GlobalStyles'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Authenticated, Refine } from '@refinedev/core'
 import { DevtoolsPanel, DevtoolsProvider } from '@refinedev/devtools'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
@@ -17,7 +20,10 @@ import routerBindings, {
 } from '@refinedev/react-router-v6'
 import { dataProvider } from '@refinedev/supabase'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
-import { ColorModeContextProvider } from './contexts/color-mode'
+import { ThemedLayoutV2 } from './components/layout'
+import { ThemedHeaderV2 } from './components/layout/header'
+import { ThemedSiderV2 } from './components/layout/sider'
+import { ThemedTitleV2 } from './components/layout/title'
 import {
   BookingCreate,
   BookingEdit,
@@ -26,19 +32,14 @@ import {
 } from './pages/booking'
 import { GuestCreate, GuestEdit, GuestList, GuestShow } from './pages/guest'
 import { RoomCreate, RoomEdit, RoomList, RoomShow } from './pages/room'
+import theme from './theme'
 import { supabaseClient } from './utility'
-import { ThemedLayoutV2 } from './components/layout'
-import { ThemedHeaderV2 } from './components/layout/header'
-import { ThemedSiderV2 } from './components/layout/sider'
-import { ThemedTitleV2 } from './components/layout/title'
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 function App() {
   return (
     <BrowserRouter>
       <RefineKbarProvider>
-        <ColorModeContextProvider>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -166,7 +167,7 @@ function App() {
               </DevtoolsProvider>
             </RefineSnackbarProvider>
           </LocalizationProvider>
-        </ColorModeContextProvider>
+        </ThemeProvider>
       </RefineKbarProvider>
     </BrowserRouter>
   )
