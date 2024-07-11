@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import { Authenticated, Refine } from '@refinedev/core'
 import { DevtoolsPanel, DevtoolsProvider } from '@refinedev/devtools'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
@@ -31,6 +31,7 @@ import {
   BookingList,
   BookingShow,
 } from './pages/booking'
+import Dashboard from './pages/dashboard'
 import { GuestCreate, GuestEdit, GuestList, GuestShow } from './pages/guest'
 import { RoomCreate, RoomEdit, RoomList, RoomShow } from './pages/room'
 import theme from './theme'
@@ -43,7 +44,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <RefineSnackbarProvider>
               <DevtoolsProvider>
                 <Refine
@@ -53,6 +54,11 @@ function App() {
                   routerProvider={routerBindings}
                   notificationProvider={useNotificationProvider}
                   resources={[
+                    {
+                      name: 'dashboard',
+                      list: '/',
+                      meta: { lable: 'Dashboard' },
+                    },
                     {
                       name: 'bookings',
                       list: '/bookings',
@@ -102,10 +108,7 @@ function App() {
                         </Authenticated>
                       }
                     >
-                      <Route
-                        index
-                        element={<NavigateToResource resource="bookings" />} // TODO: set resource to dashboard
-                      />
+                      <Route index element={<Dashboard />} />
                       <Route path="/bookings">
                         <Route index element={<BookingList />} />
                         <Route path="create" element={<BookingCreate />} />
