@@ -55,21 +55,6 @@ export const BookingShow = () => {
                 variant="outlined"
                 color={booking?.paid ? 'success' : 'warning'}
               />
-
-              <Chip
-                sx={{ fontSize: '1.5rem' }}
-                label={booking?.status}
-                variant="outlined"
-                color={
-                  booking?.status === 'unpaid'
-                    ? 'warning'
-                    : booking?.status === 'checked-in'
-                      ? 'primary'
-                      : booking?.status === 'checked-out'
-                        ? 'success'
-                        : 'error'
-                }
-              />
             </Stack>
             <Stack direction="row" alignItems="center" gap={1}>
               <NumberField

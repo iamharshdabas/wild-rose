@@ -99,12 +99,6 @@ export const BookingList = ({ filters }: Props) => {
         },
       },
       {
-        field: 'status',
-        flex: 1,
-        headerName: 'Status',
-        minWidth: 150,
-      },
-      {
         field: 'roomID',
         headerName: 'Room',
         minWidth: 100,

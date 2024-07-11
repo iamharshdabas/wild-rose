@@ -26,8 +26,6 @@ export const BookingCreate = () => {
     resource: 'guests',
   })
 
-  const options = ['unpaid', 'checked-in', 'checked-out']
-
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
       <Box
@@ -119,30 +117,6 @@ export const BookingCreate = () => {
                   }}
                 />
               }
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="status"
-          rules={{ required: 'This field is required' }}
-          render={({ field }) => (
-            <Autocomplete
-              options={options}
-              getOptionLabel={(option) => option}
-              isOptionEqualToValue={(option, value) => option === value}
-              onChange={(_, value) => field.onChange(value)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Status"
-                  margin="normal"
-                  variant="outlined"
-                  error={!!errors.status}
-                  helperText={(errors as any)?.status?.message}
-                  required
-                />
-              )}
             />
           )}
         />
