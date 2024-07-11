@@ -26,7 +26,7 @@ export const BookingCreate = () => {
     resource: 'guests',
   })
 
-  const options = ['unpaid', 'checked-in', 'checked-out', 'checked-out-due']
+  const options = ['unpaid', 'checked-in', 'checked-out']
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>

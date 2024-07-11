@@ -30,7 +30,7 @@ export const BookingEdit = () => {
     defaultValue: bookingsData?.guestID,
   })
 
-  const options = ['unpaid', 'checked-in', 'checked-out', 'checked-out-due']
+  const options = ['unpaid', 'checked-in', 'checked-out']
 
   return (
     <Edit saveButtonProps={saveButtonProps}>
