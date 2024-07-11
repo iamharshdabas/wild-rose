@@ -1,7 +1,30 @@
-import { LineChart } from '@mui/x-charts'
 import { Card, CardContent, Typography } from '@mui/material'
+import { LineChart } from '@mui/x-charts'
+import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns'
 
-const LineChartComponent = ({ date }) => {
+const DashboardAreaChart = ({ data, selectedRange }) => {
+  const allDates = eachDayOfInterval({
+    start: subDays(new Date(), parseInt(selectedRange) - 1),
+    end: new Date(),
+  })
+
+  const date: { label: string; totalSales: number }[] = allDates.map((date) => {
+    return {
+      label: format(date, 'MMM dd'),
+      totalSales: data?.data
+        ?.filter((bookings) =>
+          isSameDay(date, new Date(bookings?.startDate || ''))
+        )
+        .reduce((acc, obj) => {
+          if (obj.price !== null) {
+            return acc + obj.price
+          } else {
+            return acc
+          }
+        }, 0),
+    }
+  })
+
   const labels = date.map((data) => data.label)
   const values = date.map((data) => data.totalSales)
 
@@ -28,8 +51,8 @@ const LineChartComponent = ({ date }) => {
               scaleType: 'linear',
             },
           ]}
-          width={1000}
-          height={300}
+          width={800}
+          height={400}
           margin={{ top: 40, right: 10, bottom: 20, left: 80 }}
         />
       </CardContent>
@@ -37,4 +60,4 @@ const LineChartComponent = ({ date }) => {
   )
 }
 
-export default LineChartComponent
+export default DashboardAreaChart
