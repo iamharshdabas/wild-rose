@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider, Typography } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import { LocalizationProvider } from '@mui/x-date-pickers'
@@ -36,6 +36,12 @@ import { GuestCreate, GuestEdit, GuestList, GuestShow } from './pages/guest'
 import { RoomCreate, RoomEdit, RoomList, RoomShow } from './pages/room'
 import theme from './theme'
 import { supabaseClient } from './utility'
+import {
+  DashboardRounded,
+  PersonRounded,
+  TurnedInRounded,
+  VillaRounded,
+} from '@mui/icons-material'
 
 function App() {
   return (
@@ -57,7 +63,7 @@ function App() {
                     {
                       name: 'dashboard',
                       list: '/',
-                      meta: { lable: 'Dashboard' },
+                      meta: { icon: <DashboardRounded />, lable: 'Dashboard' },
                     },
                     {
                       name: 'bookings',
@@ -65,7 +71,7 @@ function App() {
                       create: '/bookings/create',
                       edit: '/bookings/edit/:id',
                       show: '/bookings/show/:id',
-                      meta: { canDelete: true },
+                      meta: { icon: <TurnedInRounded />, canDelete: true },
                     },
                     {
                       name: 'guests',
@@ -73,7 +79,7 @@ function App() {
                       create: '/guests/create',
                       edit: '/guests/edit/:id',
                       show: '/guests/show/:id',
-                      meta: { canDelete: true },
+                      meta: { icon: <PersonRounded />, canDelete: true },
                     },
                     {
                       name: 'rooms',
@@ -81,7 +87,7 @@ function App() {
                       create: '/rooms/create',
                       edit: '/rooms/edit/:id',
                       show: '/rooms/show/:id',
-                      meta: { canDelete: true },
+                      meta: { icon: <VillaRounded />, canDelete: true },
                     },
                   ]}
                   options={{
@@ -143,6 +149,7 @@ function App() {
                         path="/login"
                         element={
                           <AuthPage
+                            title={<ThemedTitleV2 collapsed={false} />}
                             type="login"
                             formProps={{
                               defaultValues: {
@@ -155,11 +162,21 @@ function App() {
                       />
                       <Route
                         path="/register"
-                        element={<AuthPage type="register" />}
+                        element={
+                          <AuthPage
+                            title={<ThemedTitleV2 collapsed={false} />}
+                            type="register"
+                          />
+                        }
                       />
                       <Route
                         path="/forgot-password"
-                        element={<AuthPage type="forgotPassword" />}
+                        element={
+                          <AuthPage
+                            title={<ThemedTitleV2 collapsed={false} />}
+                            type="forgotPassword"
+                          />
+                        }
                       />
                     </Route>
                   </Routes>
