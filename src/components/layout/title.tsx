@@ -48,10 +48,9 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-tent"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <path d="M3.5 21 14 3" />
           <path d="M20.5 21 10 3" />
