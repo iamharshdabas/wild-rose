@@ -18,7 +18,7 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from '@refinedev/react-router-v6'
-import { dataProvider } from '@refinedev/supabase'
+import { dataProvider, liveProvider } from '@refinedev/supabase'
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import authProvider from './authProvider'
 import { ThemedLayoutV2 } from './components/layout'
@@ -55,7 +55,7 @@ function App() {
               <DevtoolsProvider>
                 <Refine
                   dataProvider={dataProvider(supabaseClient)}
-                  // liveProvider={liveProvider(supabaseClient)}
+                  liveProvider={liveProvider(supabaseClient)}
                   authProvider={authProvider}
                   routerProvider={routerBindings}
                   notificationProvider={useNotificationProvider}
@@ -94,6 +94,7 @@ function App() {
                     syncWithLocation: true,
                     warnWhenUnsavedChanges: true,
                     useNewQueryKeys: true,
+                    liveMode: 'auto',
                     projectId: 'VeqEWg-Qbn8FE-8O4HEM',
                   }}
                 >
