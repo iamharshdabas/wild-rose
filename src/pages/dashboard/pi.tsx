@@ -55,8 +55,6 @@ const DashboardPiChart = ({ data }) => {
 
   const updatedStays = incrementStays()
 
-  console.log(updatedStays)
-
   return (
     <PieChart
       series={[
