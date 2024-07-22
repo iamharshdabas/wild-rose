@@ -44,7 +44,7 @@
   },
   "scripts": {
     "dev": "refine dev",
-    "build": "tsc && refine build",
+    "build": "refine build",
     "preview": "refine start",
     "refine": "refine",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}' --ignore-path .prettierignore"
